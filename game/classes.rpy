@@ -1,34 +1,37 @@
-label classDesc(charaClass):
-    if charaClass == "assassin":
-        "assassin"
-    if charaClass == "barbarian":
-        "barbarian"
-    if charaClass == "bard":
-        "bard"
-    if charaClass == "cleric":
-        "cleric"
-    if charaClass == "druid":
-        "druid"
-    if charaClass == "eldrich knight":
-        "eldrich knight"
-    if charaClass == "fighter":
-        "fighter"
-    if charaClass == "mystic":
-        "mystic"
-    if charaClass == "paladin":
-        "paladin"
-    if charaClass == "ranger":
-        "ranger"
-    if charaClass == "scribe":
-        "scribe"
-    if charaClass == "thief":
-        "thief"
-    if charaClass == "warlock":
-        "warlock"
-    if charaClass == "warlord":
-        "warlord"
-    if charaClass == "witch":
-        "witch"
-    if charaClass == "wizard":
-        "wizard"
+init python:
+    def classDesc(charaClass):
+        description = ""
+        if charaClass == "assassin":
+            description = "assassin"
+        if charaClass == "barbarian":
+            description = "barbarian"
+        if charaClass == "bard":
+            description = "bard"
+        if charaClass == "cleric":
+            description = "cleric"
+        if charaClass == "druid":
+            description = "druid"
+        if charaClass == "eldrich knight":
+            description = "eldrich knight"
+        if charaClass == "fighter":
+            description = "fighter"
+        if charaClass == "mystic":
+            description = "mystic"
+        if charaClass == "paladin":
+            description = "paladin"
+        if charaClass == "ranger":
+            description = "ranger"
+        if charaClass == "scribe":
+            description = "scribe"
+        if charaClass == "thief":
+            description = "thief"
+        if charaClass == "warlock":
+            description = "warlock"
+        if charaClass == "warlord":
+            description = "warlord"
+        if charaClass == "witch":
+            description = "witch"
+        if charaClass == "wizard":
+            description = "wizard"
+        return description
     

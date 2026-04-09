@@ -1,10 +1,12 @@
 label characterCreation:
     python:
-        playerName = renpy.input(prompt='What is your name', length=32)
+        playerName = renpy.input(prompt='What is your name?', length=32)
         playerName = playerName.strip()
 
         if not playerName:
             playerName = "fuck"
+    call screen general_details
+    pause
 
 menu .genderSelection:
     "are you a boy or a girl" 
@@ -15,7 +17,7 @@ menu .genderSelection:
         $ playerSheet.gender = "girl"
         $ playerSheet.hasBeard = False
 menu .raceSelection:
-    "What race are you"
+    "What race are you?"
     "Human":
         $ playerSheet.race = "human"
         call raceDesc(playerSheet.race)
@@ -537,7 +539,7 @@ label .statSelection:
     $ playerSheet.intellect = 1
     $ playerSheet.insight = 1
     $ playerSheet.charm = 1
-    $ playerSheet.will = 1
+    $ playerSheet.willPower = 1
     $ playerSheet.arcana = 0
     $ playerSheet.technique = 0
     $ playerSheet.initiative = 0

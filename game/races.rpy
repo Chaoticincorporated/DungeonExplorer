@@ -26,7 +26,27 @@ label raceDesc(race):
     if race == "Oviur":
         "Nimble humaniods adept at stalking the corridors of the dungeon. standing shorter then a human, they have inky black skin and hair, pale white teeth and bioluminescent markings across their body"
 
-python:
+init python:
+    def raceDesc(race):
+        description = ""
+        if race == "human":
+            description = "its humans"
+        if race == "elf":
+            description = "its elves"
+        if race == "dwarf":
+            description = "its dwarves"
+        if race == "orc":
+            description = "its orcs"
+        if race == "halfling":
+            description = "its halflings"
+        if race == "arenae":
+            description = "serpentine humanoids, whom share many characteristics with elves"
+        if race == "harpy":
+            description = "its harpies"
+        if race == "oviur":
+            description = "Nimble humaniods adept at stalking the corridors of the dungeon. standing shorter then a human, they have inky black skin and hair, pale white teeth and bioluminescent markings across their body"
+        return description
+
     def showRaceHeight(race):
         if race == "human":
             return "Please input a height between [humanHeight[0]] and [humanHeight[2]]:"
