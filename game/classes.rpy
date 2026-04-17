@@ -1,4 +1,4 @@
-init python:
+init 2 python:
     def classDesc(charaClass):
         description = ""
         if charaClass == "assassin":
