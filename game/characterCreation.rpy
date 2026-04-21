@@ -5,6 +5,16 @@ label characterCreation:
 
         if not playerName:
             playerName = "fuck"
+        
+        playerSheet.skills = [
+            ["strength", 5],["dexterity", 5],["constitution", 5],
+            ["intellect", 5],["charm", 5],["willPower", 5],
+            ["insight", -10],["perception", -10],["craftsmenship", -10],
+            ["lockPicking", -10],["lore", -10],["survival", -10],
+            ["medicine", -10],["stealth", -10],["performance", -10],
+            ["slightOfHand", -10],["intimidation", -10],["strategy", -10],
+            ]
+        playerSheet.bodyPartsBoolean = [False, False, False, False, False, False]
     call screen general_details
     pause
 
@@ -529,69 +539,4 @@ menu .skinColorSecondarySelection:
         jump .faceStructureSelection
     "go back" if playerSheet.race != 'oviur':
         jump .skinColorSelection
-label .statSelection:
-    "The following will have varying degrees of mechanical value, and as such will often cost skill points to adjust them."
-    $ playerSheet.fitness = "average"
-    $ playerSheet.build = "average"
-    $ playerSheet.strength = 1
-    $ playerSheet.dexterity = 1
-    $ playerSheet.constitution = 1
-    $ playerSheet.intellect = 1
-    $ playerSheet.insight = 1
-    $ playerSheet.charm = 1
-    $ playerSheet.willPower = 1
-    $ playerSheet.arcana = 0
-    $ playerSheet.technique = 0
-    $ playerSheet.initiative = 0
-label .heightSelection:
-    python:
-        validHeight = False
-        while validHeight == False:
-            height = renpy.input(prompt=showRaceHeight(playerSheet.race))
-            try:
-                height = float(height)
-                validHeight = True
-            except:
-                renpy.say(what="Invalid response, try again.")
-menu .buildSelection:
-    "select your body type"
-    "lean":
-        $ playerSheet.build
-    "go back":
-        jump .heightSelection
-menu .abilityScoreSelection:
-    "please allocate your skill points. <skill points remaining:[skillPoints]>"
-    "strength:[playerSheet.strength] <1 point per level>":
-        $ playerSheet.strength += 1
-        $ skillPoints -= 1
-    "dexterity:[playerSheet.dexterity] <1 point per level>":
-        $ playerSheet.dexterity += 1
-        $ skillPoints -= 1
-    "constitution:[playerSheet.constitution] <1 point per level>":
-        $ playerSheet.constitution += 1
-        $ skillPoints -= 1
-    "intellect:[playerSheet.intellect] <1 point per level>":
-        $ playerSheet.intellect += 1
-        $ skillPoints -= 1
-    "insight:[playerSheet.insight] <1 point per level>":
-        $ playerSheet.insight += 1
-        $ skillPoints -= 1
-    "charm:[playerSheet.charm] <1 point per level>":
-        $ playerSheet.charm += 1
-        $ skillPoints -= 1
-    "will:[playerSheet.will] <1 point per level>":
-        $ playerSheet.will += 1
-        $ skillPoints -= 1
-    "arcana:[playerSheet.arcana] <2 point per level>":
-        $ playerSheet.arcana += 1
-        $ skillPoints -= 2
-    "technique:[playerSheet.technique] <2 point per level>":
-        $ playerSheet.technique += 1
-        $ skillPoints -= 2
-    "initiative:[playerSheet.initiative] <5 point per level>":
-        $ playerSheet.initiative += 1
-        $ skillPoints -= 5
-    "go back":
-        jump .buildSelection
-label characterDesc:
-    "you are a [playerSheet.race] [playerSheet.charaClass]."
+

@@ -5,46 +5,32 @@ init 2 python:
     def setTempRacialBonuses(raceSkillBonus):
         skillArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         for bonus in raceSkillBonus:
-            match bonus[0]:
-                case "strength":
-                    skillArray[0] += bonus[1]
-                case "dexterity":
-                    skillArray[1] += bonus[1]
-                case "constitution":
-                    skillArray[2] += bonus[1]
-                case "intellect":
-                    skillArray[3] += bonus[1]
-                case "charm":
-                    skillArray[4] += bonus[1]
-                case "willPower":
-                    skillArray[5] += bonus[1]
-                case "insight":
-                    skillArray[6] += bonus[1]
-                case "perception":
-                    skillArray[7] += bonus[1]
-                case "craftsmenship":
-                    skillArray[8] += bonus[1]
-                case "lockPicking":
-                    skillArray[9] += bonus[1]
-                case "lore":
-                    skillArray[10] += bonus[1]
-                case "survival":
-                    skillArray[11] += bonus[1]
-                case "medicine":
-                    skillArray[12] += bonus[1]
-                case "stealth":
-                    skillArray[13] += bonus[1]
-                case "performance":
-                    skillArray[14] += bonus[1]
-                case "slightOfHand":
-                    skillArray[15] += bonus[1]
-                case "intimidation":
-                    skillArray[16] += bonus[1]
-                case "strategy":
-                    skillArray[17] += bonus[1]
-                case "skillPoints":
-                    skillArray[18] += bonus[1]
+            for skill in range(len(playerSheet.skills)+1):
+                if skill < 18:
+                    if playerSheet.skills[skill][0] == bonus[0]:
+                        skillArray[skill] += bonus[1]
+                        break
+                else:
+                    if bonus[0] == "skillPoints":
+                        skillArray[skill] += bonus[1]
+                        break
         return skillArray
+    def setMinSkillLv(skillIndex):
+        if skillIndex <= 5:
+            return 0
+        elif skillIndex <= 17:
+            return -20
+    def calculateSkillPointValue(skillLv):
+        if skillLv <= -10:
+            return 2
+        elif skillLv <= 10:
+            return 1
+        elif skillLv <= 20:
+            return 2
+        elif skillLv <= 30:
+            return 3
+        else:
+            return 5
     
 screen character_creation_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
@@ -234,266 +220,27 @@ screen general_details():
                         textbutton _("Witch") action [SetVariable("playerSheet.characterClass", "witch"), SetVariable("bottomText", classDesc("witch"))]
                         textbutton _("Wizard") action [SetVariable("playerSheet.characterClass", "wizard"), SetVariable("bottomText", classDesc("wizard"))]
             text _("")
-            label _("Core Skills(1 point each)")
-            grid 3 2:
-                #style "skill_rows"
-                spacing 10
-                hbox:
-                    text _("Strength: ")
+            label _("Skills")
+            grid 3 6:
+                python:
+                    skillBonusIndex = 0
+                for skill in playerSheet.skills:
                     vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.strength", playerSheet.strength+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.strength + charaCreationTempSkillMods[0]]")
-                        if playerSheet.strength > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.strength", playerSheet.strength-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Dexterity: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.dexterity", playerSheet.dexterity+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.dexterity + charaCreationTempSkillMods[1]]")
-                        if playerSheet.dexterity > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.dexterity", playerSheet.dexterity-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Constitution: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.constitution", playerSheet.constitution+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.constitution + charaCreationTempSkillMods[2]]")
-                        if playerSheet.constitution > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.constitution", playerSheet.constitution-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Intellect: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.intellect", playerSheet.intellect+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.intellect + charaCreationTempSkillMods[3]]")
-                        if playerSheet.intellect > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.intellect", playerSheet.intellect-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Charm: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.charm", playerSheet.charm+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.charm + charaCreationTempSkillMods[4]]")
-                        if playerSheet.charm > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.charm", playerSheet.charm-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Willpower: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.willPower", playerSheet.willPower+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.willPower + charaCreationTempSkillMods[5]]")
-                        if playerSheet.willPower > 0:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.willPower", playerSheet.willPower-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-            label _("Secondary Skills(1 point each)")
-            grid 4 3:
-                spacing 10
-                style_prefix "skill_rows"
-                hbox:
-                    text _("Insight: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.insight", playerSheet.insight+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.insight + charaCreationTempSkillMods[6]]")
-                        if playerSheet.insight > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.insight", playerSheet.insight-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Perception: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.perception", playerSheet.perception+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.perception + charaCreationTempSkillMods[7]]")
-                        if playerSheet.perception > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.perception", playerSheet.perception-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Craftsmenship: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.craftsmenship", playerSheet.craftsmenship+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.craftsmenship + charaCreationTempSkillMods[8]]")
-                        if playerSheet.craftsmenship > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.craftsmenship", playerSheet.craftsmenship-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Lockpicking: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.lockPicking", playerSheet.lockPicking+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.lockPicking + charaCreationTempSkillMods[9]]")
-                        if playerSheet.lockPicking > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.lockPicking", playerSheet.lockPicking-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Lore: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.lore", playerSheet.lore+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.lore + charaCreationTempSkillMods[10]]")
-                        if playerSheet.lore > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.lore", playerSheet.lore-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Survival: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.survival", playerSheet.survival+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.survival + charaCreationTempSkillMods[11]]")
-                        if playerSheet.survival > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.survival", playerSheet.survival-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Medicine: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.medicine", playerSheet.medicine+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.medicine + charaCreationTempSkillMods[12]]")
-                        if playerSheet.medicine > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.medicine", playerSheet.medicine-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Stealth: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.stealth", playerSheet.stealth+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.stealth + charaCreationTempSkillMods[13]]")
-                        if playerSheet.stealth > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.stealth", playerSheet.stealth-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Performance: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.performance", playerSheet.performance+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.performance + charaCreationTempSkillMods[14]]")
-                        if playerSheet.performance > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.performance", playerSheet.performance-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Slight Of Hand: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.slightOfHand", playerSheet.slightOfHand+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.slightOfHand + charaCreationTempSkillMods[15]]")
-                        if playerSheet.slightOfHand > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.slightOfHand", playerSheet.slightOfHand-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Intimidation: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.intimidation", playerSheet.intimidation+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.intimidation + charaCreationTempSkillMods[16]]")
-                        if playerSheet.intimidation > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.intimidation", playerSheet.intimidation-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
-                hbox:
-                    text _("Strategy: ")
-                    vbox:
-                        if skillPoints + charaCreationTempSkillMods[18] >= 1:
-                            textbutton _("+") action [SetVariable("skillPoints", skillPoints-1), SetVariable("playerSheet.strategy", playerSheet.strategy+1)]
-                        else:
-                            textbutton _("+"):
-                                action SetVariable("bottomText", "Not enough skill points")
-                        text _("[playerSheet.strategy + charaCreationTempSkillMods[17]]")
-                        if playerSheet.strategy > -20:
-                            textbutton _("-") action [SetVariable("skillPoints", skillPoints+1), SetVariable("playerSheet.strategy", playerSheet.strategy-1)]
-                        else:
-                            textbutton _("-"):
-                                action SetVariable("bottomText", "Minimum skill level")
+                        text _("[skill[0].capitalize()]")
+                        hbox:
+                            if skill[1] > setMinSkillLv(skillBonusIndex):
+                                textbutton _("-") action [SetVariable("skillPoints", skillPoints+calculateSkillPointValue(skill[1])), SetDict(playerSheet.skills[skillBonusIndex], 1, skill[1]-1)]
+                            else:
+                                textbutton _("-"):
+                                    action SetVariable("bottomText", "Minimum skill level")
+                            text _("<[skill[1] + charaCreationTempSkillMods[skillBonusIndex]]>")
+                            if skillPoints + charaCreationTempSkillMods[18] >= calculateSkillPointValue(skill[1]):
+                                textbutton _("+") action [SetVariable("skillPoints", skillPoints-calculateSkillPointValue(skill[1]+1)), SetDict(playerSheet.skills[skillBonusIndex], 1, skill[1]+1)]
+                            else:
+                                textbutton _("+"):
+                                    action SetVariable("bottomText", "Not enough skill points")
+                    python:
+                        skillBonusIndex += 1
             text _("")
 
 style skill_rows_text is gui_text

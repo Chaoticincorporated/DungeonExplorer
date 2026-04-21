@@ -6,12 +6,12 @@ init python:
     class CharacterDataSheet:
         traits = []
         skills = [
-            ("strength", 5),("dexterity", 5),("constitution", 5),
-            ("intellect", 5),("charm", 5),("willPower", 5),
-            ("insight", -10),("perception", -10),("craftsmenship", -10),
-            ("lockPicking", -10),("lore", -10),("survival", -10),
-            ("medicine", -10),("stealth", -10),("performance", -10),
-            ("slightOfHand", -10),("intimidation", -10),("strategy", -10),
+            ["strength", 5],["dexterity", 5],["constitution", 5],
+            ["intellect", 5],["charm", 5],["willPower", 5],
+            ["insight", -10],["perception", -10],["craftsmenship", -10],
+            ["lockPicking", -10],["lore", -10],["survival", -10],
+            ["medicine", -10],["stealth", -10],["performance", -10],
+            ["slightOfHand", -10],["intimidation", -10],["strategy", -10],
             ]
         inventory = []
         #stats
@@ -57,7 +57,9 @@ init python:
         armour = "nothing"
         mainHand = "nothing"
         offHand = "nothing"
-        #boolean variables
+        #boolean variables indexes
+        #0=hasHorns, 1=hasTail, 2=hasWings, 3=hasFreckles, 4=hasBeard, 5=hasHairAccents
+        bodyPartsBoolean = [False, False, False, False, False, False]
         hasHorns = False
         hasTail = False
         hasWings = False
@@ -85,43 +87,10 @@ init python:
         feet = ""
         def setRacialSkillBonuses(self, raceSkillBonus):
             for bonus in raceSkillBonus:
-                match bonus[0]:
-                    case "strength":
-                        self.strength += bonus[1]
-                    case "dexterity":
-                        self.dexterity += bonus[1]
-                    case "constitution":
-                        self.constitution += bonus[1]
-                    case "intellect":
-                        self.intellect += bonus[1]
-                    case "charm":
-                        self.charm += bonus[1]
-                    case "willPower":
-                        self.willPower += bonus[1]
-                    case "insight":
-                        self.insight += bonus[1]
-                    case "perception":
-                        self.perception += bonus[1]
-                    case "craftsmenship":
-                        self.craftsmenship += bonus[1]
-                    case "lockPicking":
-                        self.lockPicking += bonus[1]
-                    case "lore":
-                        self.lore += bonus[1]
-                    case "survival":
-                        self.survival += bonus[1]
-                    case "medicine":
-                        self.medicine += bonus[1]
-                    case "stealth":
-                        self.stealth += bonus[1]
-                    case "performance":
-                        self.performance += bonus[1]
-                    case "slightOfHand":
-                        self.slightOfHand += bonus[1]
-                    case "intimidation":
-                        self.intimidation += bonus[1]
-                    case "strategy":
-                        self.strategy += bonus[1]
+                for skill in range(len(self.playerSheet.skills)):
+                    if self.playerSheet.skills[skill][0] == bonus[0]:
+                        self.playerSheet.skills[skill][1] += bonus[1]
+                        break
         def getInches(self):
             inches = 0
             for index in range(len(self.height)):
