@@ -1,7 +1,12 @@
 
 init 1 python:
+    class bodyOptions():
+        def __init__(self, booleanTraits, bodyConstants, bodyOptionals):
+            self.booleanTraits = booleanTraits
+            self.bodyConstants = bodyConstants
+            self.bodyOptionals = bodyOptionals
     class raceDetails:
-        def __init__(self, raceName, raceHeight, raceSkillBonus, racialTraits):
+        def __init__(self, raceName, raceHeight, raceSkillBonus, racialTraits, raceBodyOptions):
             self.raceName = raceName
             #(minHeight,averageHeight,maxHeight) the whole number represents feet and the decimal represents inches
             self.raceHeight = raceHeight
@@ -9,6 +14,7 @@ init 1 python:
             #"skillPoints" can also be inputted for the first slot of the tuple to indicate that the character gets extra skill points.
             self.raceSkillBonus = raceSkillBonus
             self.racialTraits = racialTraits
+            self.raceBodyOptions = raceBodyOptions
         def getRaceHeight(self):
             return "Please input a height between [self.raceHeight[0]] and [self.raceHeight[2]]:"
         def getRaceHeightAvg(self):
@@ -18,68 +24,429 @@ init 1 python:
     human = raceDetails("human",
         ("4.6","5.5","6.4"),
         [("skillPoints", 20)],
-        "") #20
+        "",
+        bodyOptions(
+            ["canHaveHair", "malesHaveBeards", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"humanoid"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"omnivorous"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })
+        ) #20
     shifter = raceDetails("shifter",
         ("4.6","5.5","6.4"),
         [("charm", 5), ("performance", 5), ("skillPoints", 10)],
-        "") #20
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"teardrop"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["white", "grey", "silver"]
+                "eyeColor": ["white", "black", , "amber", "yellow"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["white", "grey"]
+            })) #20
     elf = raceDetails("elf",
         ("4.3","5.0","5.10"),
         [("dexterty", 4), ("intellect", 3), ("willPower", 3), ("insight", 2), ("perception", 2), ("stealth", 2), ("medicine", 2), ("survival", 1), ("lore", 1)],
-        "") #20
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #20
     halfElf = raceDetails("half-elf",
         ("4.4","5.2","6.1"),
         [("dexterty", 3), ("intellect", 3), ("willPower", 2), ("perception", 2), ("stealth", 2), ("insight", 1), ("skillPoints", 7)],
-        "") #20
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #20
     dwarf = raceDetails("dwarf",
         ("3.11","4.6","5.2"),
         [("willPower", 5), ("craftsmenship", 5), ("strength", 4), ("strategy", 3), ("constitution", 3), ("insight", 2), ("lore", 1), ("survival", 1), ("performance", -1), ("charm", -1), ("dexterity", -2)],
-        "") #24-4
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #24-4
     orc = raceDetails("orc",
         ("4.9","5.9","6.10"),
         [("strength", 5), ("constitution", 5), ("intimidation", 4), ("survival", 3), ("willPower", 3), ("perception", 2), ("stealth", 1), ("medicine", 1), ("lore", 1), ("performance", -1), ("charm", -2), ("lockPicking", -2)],
-        "") #25-5
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #25-5
     halfling = raceDetails("halfling",
         ("2.5","3.1","3.8"),
         [("dexterity", 5), ("charm", 4), ("willPower", 3), ("stealth", 3), ("slightOfHand", 3), ("lockPicking", 2), ("craftsmenship", 2),("skillPoints", 6), ("intimidation", -4), ("strength", -4)],
-        "") #28-8
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #28-8
     arenae = raceDetails("arenae",
         ("4.2","5.2","6.3"),
         [("charm", 5), ("intellect", 4), ("medicine", 4), ("insight", 4), ("dexterty", 3), ("stealth", 2), ("slightOfHand", 1),("strength", -1), ("intimidation", -2)],
-        "") #23-3
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #23-3
     harpy = raceDetails("harpy",
         ("4.0","4.9","5.8"),
         [("dexterity", 6), ("charm", 6), ("intellect", 4), ("performance", 4), ("strategy", 3), ("slightOfHand", 2), ("perception", 2), ("survival", 1), ("willPower", 1), ("constitution", -2), ("intimidation", -3), ("strength", -4)],
-        "") #29-9
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #29-9
     oviur = raceDetails("oviur",
         ("3.9","4.5","5.1"),
         [("strength", 10), ("dexterity", 8), ("performance", 7), ("constitution", 6), ("stealth", 3), ("survival", 2), ("intimidation", -2), ("lockPicking", -3), ("insight", -5), ("charm", -6)],
-        "") #36-16
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #36-16
     goblin = raceDetails("goblin",
         ("2.9","3.1","3.6"),
         [("dexterity", 5), ("strategy", 4), ("slightOfHand", 3), ("stealth", 3), ("craftsmenship", 3), ("lockPicking", 3), ("perception", 2), ("intellect", 1), ("constitution", -1), ("willPower", -1), ("strength", -2)],
-        "") # 24-4
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) # 24-4
     minotaur = raceDetails("minotaur",
         ("7.6","8.11","10.4"),
         [("strength", 8), ("constitution", 6), ("intimidation", 5), ("survival", 4), ("perception", 3), ("lore", 3), ("intellect", -1), ("performance", -2), ("slightOfHand", -3), ("charm", -3)],
-        "") #29-9
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #29-9
     avalite = raceDetails("avalite",
         ("4.2","5.7","6.8"),
         [("charm", 9), ("performance", 9), ("insight", 5), ("constitution", 3), ("intellect", 2), ("dexterity", 2), ("survival", -2), ("strength", -3), ("intimidation", -5)],
-        "") #30-10
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #30-10
     dryad = raceDetails("dryad",
         ("4.11","5.6","5.11"),
         [("intellect", 6), ("charm", 5), ("willPower", 4), ("insight", 4), ("medicine", 3), ("survival", 3), ("dexterity", 2), ("craftsmenship", -2), ("intimidation", -3)],
-        "") #25-5
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #25-5
     lycanthrope = raceDetails("lycanthrope",
         ("5.11","6.9","7.7"),
         [("strength", 7), ("perception", 6), ("survival", 5), ("intimidation", 4), ("constitution", 4), ("stealth", 3), ("dexterity", 2), ("insight", -2), ("performance", -2), ("lockPicking", -3), ("charm", -4)],
-        "") #31-11
+        "",
+        bodyOptions(
+            ["canHaveHair", "noseless", "canHaveFreckles"], 
+            {
+                "head":"humanoid"
+                "eyes":"monocolor"
+                "ears":"round"
+                "mouth":"humanoid"
+                "teeth":"needle-like"
+                "body":"skin"
+                "upperArm":"skin"
+                "lowerArm":"skin"
+                "hands":"humanoid"
+                "lowerBody":"humanoid"
+                "thighs":"skin"
+                "calfs":"skin"
+                "feet":"humanoid"
+            },
+            {
+                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+            })) #31-11
     #gnome
     #dragonkin
     #batfolk - name tbd
     #catfolk - name tbd
     #mantisfolk - name tbd
+    #lamia
     raceList = [human,shifter,elf,halfElf,dwarf,orc,halfling,arenae,harpy,oviur,goblin,minotaur,avalite,dryad,lycanthrope]
 
     def raceDesc(race):

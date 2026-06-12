@@ -294,7 +294,7 @@ screen defining_character_appearance():
     use character_creation_menu(_("defining_character_appearance"), scroll="viewport"):
         vbox:
             style_prefix "appearance_selection"
-            label _("Body type")
+            label _("Size")
             text "your character's height, weight and build will have some effect on gameplay, like a narrow passage that bulky or tall character might not be able to traverse or certain physical tasks like pushing over a pillar will be hard for shorter or leaner characters, even if they have good strength."
             text _("")
             hbox:

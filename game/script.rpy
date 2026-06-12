@@ -17,32 +17,12 @@ init python:
         #stats
         level = 0
         hitpoints = 0
-        gender = ""
+        gender = "boy"
         race = ""
         characterClass= ""
         height = ""
         build = "average"
         weight = 0 #weight is in pounds (lbs)
-        #core skills:
-        strength = 5
-        dexterity = 5
-        constitution = 5
-        intellect = 5
-        charm = 5
-        willPower = 5
-        #secondary skills
-        insight = -10
-        perception = -10
-        craftsmenship = -10
-        lockPicking = -10
-        lore = -10
-        survival = -10
-        medicine = -10
-        stealth = -10
-        performance = -10
-        slightOfHand = -10
-        intimidation = -10
-        strategy = -10
         #tertairy skills
         initiative = 0
         arcana = 0
@@ -57,34 +37,49 @@ init python:
         armour = "nothing"
         mainHand = "nothing"
         offHand = "nothing"
-        #boolean variables indexes
-        #0=hasHorns, 1=hasTail, 2=hasWings, 3=hasFreckles, 4=hasBeard, 5=hasHairAccents
-        bodyPartsBoolean = [False, False, False, False, False, False]
+        #boolean variables 
         hasHorns = False
         hasTail = False
         hasWings = False
-        hasFreckles = False
-        hasBeard = False
+        canHaveHair = False
+        canHaveFreckles = False
+        canHaveBeard = False
         hasHairAccents = False
         #appearance
-        hairLength = "bald"
-        hairStyle = ""
-        hairColor = ""
-        hairColorSecondary = ""
-        eyeColor = ""
-        beardStyle = ""
-        ears = ""
-        hornStyle = ""
-        faceStructure = ""
-        skinColor = ""
-        skinColorSecondary = ""
-        body = ""
-        upperArm = ""
-        lowerArm = ""
-        hands = ""
-        thighs = ""
-        calfs = ""
-        feet = ""
+        bodyConstants = {
+            "head":""
+            "eyes":""
+            "ears":""
+            "mouth":""
+            "teeth":""
+            "body":""
+            "upperArm":""
+            "lowerArm":""
+            "hands":""
+            "lowerBody":""
+            "thighs":""
+            "calfs":""
+            "feet":""
+        }
+        optionalBodyDetails = {
+            "hairLength": ""
+            "hairStyle": ""
+            "hairColor": ""
+            "hairColorSecondary": ""
+            "eyeColor": ""
+            "beardStyle": ""
+            "beardColor": ""
+            "hornStyle": ""
+            "hornLength": ""
+            "faceStructure": ""
+            "nose":""
+            "skinColor": ""
+            "skinColorSecondary": ""
+            "tailType": ""
+            "tailLength": ""
+            "isTailPrehensile": False
+            "wingType": ""
+        }
         def setRacialSkillBonuses(self, raceSkillBonus):
             for bonus in raceSkillBonus:
                 for skill in range(len(self.playerSheet.skills)):
@@ -134,6 +129,8 @@ init python:
                 if skill[0] == targetSkill:
                     skill[1] += amount
                     break
+        def setBodyDetails(self, targetRace):
+            #
     
     def numeralRangeConstraints(minNum,maxNum,valueToCheck):
         if valueToCheck > maxNum:
