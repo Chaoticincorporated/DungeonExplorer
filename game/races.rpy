@@ -74,7 +74,7 @@ init 1 python:
             {
                 "hairColor": ["white", "grey", "silver"]
                 "eyeColor": ["white", "black", , "amber", "yellow"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "faceStructure": ["sharp", "regal", "chisled"]
                 "skinColor": ["white", "grey"]
             })) #20
     elf = raceDetails("elf",
@@ -85,10 +85,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
-                "ears":"round"
+                "eyes":"humanoid"
+                "ears":"pointed"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -99,11 +99,10 @@ init 1 python:
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "hairColor": ["deep red", "copper", "silver", "blonde", "white", "golden", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "silver", "lime green", "green", "golden"]
+                "faceStructure": ["delicate", "regal", "soft", "sharp", "angular"]
+                "skinColor": ["white", "pale", "beige", "tan", "olive", "light brown", "brown", "copper", "bronze"]
             })) #20
     halfElf = raceDetails("half-elf",
         ("4.4","5.2","6.1"),
@@ -113,10 +112,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
-                "ears":"round"
+                "eyes":"humanoid"
+                "ears":"teardrop"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -127,11 +126,11 @@ init 1 python:
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "hairColor": ["deep red", "ginger", "copper", "white", "golden", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel", "silver", "golden"]
                 "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "round", "gruff", "sharp", "angular"]
+                "skinColor": ["white", "pale", "beige", "tan", "olive", "light brown", "brown", "copper", "bronze", "dark brown", "black"]
             })) #20
     dwarf = raceDetails("dwarf",
         ("3.11","4.6","5.2"),
@@ -141,10 +140,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -155,11 +154,11 @@ init 1 python:
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "hairColor": ["deep red", "ginger", "grey", "light brown", "brown", "dark brown", "black"]
                 "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "beardColor": ["deep red", "ginger", "grey", "light brown", "brown", "dark brown", "black"]
+                "faceStructure": ["regal", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "grey", "redish brown"]
             })) #24-4
     orc = raceDetails("orc",
         ("4.9","5.9","6.10"),
@@ -169,10 +168,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
-                "mouth":"humanoid"
-                "teeth":"needle-like"
+                "mouth":"protruding"
+                "teeth":"tusked"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -183,11 +182,11 @@ init 1 python:
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "hairColor": ["deep red", "copper", "brown", "dark brown", "black", "grey", "white"]
+                "eyeColor": ["red", "deep red", "grey", "lime green", "green", "brown", "amber", "hazel", "yellow"]
+                "beardColor": ["deep red", "copper", "brown", "dark brown", "black", "grey", "white"]
+                "faceStructure": ["regal", "chisled", "block headed", "round", "gruff"]
+                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black", "pale green", "green", "dark green"]
             })) #25-5
     halfling = raceDetails("halfling",
         ("2.5","3.1","3.8"),
@@ -197,10 +196,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -214,7 +213,7 @@ init 1 python:
                 "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
                 "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
                 "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "faceStructure": ["delicate", "regal", "soft", "round", "charubic"]
                 "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
             })) #28-8
     arenae = raceDetails("arenae",
@@ -225,25 +224,25 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
-                "ears":"round"
+                "eyes":"serpentine"
+                "ears":"pointed"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
-                "body":"skin"
-                "upperArm":"skin"
-                "lowerArm":"skin"
+                "teeth":"carnivorous"
+                "body":"serpentine"
+                "upperArm":"serpentine"
+                "lowerArm":"serpentine"
                 "hands":"humanoid"
                 "lowerBody":"humanoid"
-                "thighs":"skin"
-                "calfs":"skin"
+                "thighs":"serpentine"
+                "calfs":"serpentine"
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "hairColor": ["deep blue", "indigo", "black","silver", "white", "pale green", "green", "dark green"]
+                "eyeColor": ["blue", "sky blue", "red", "deep red", "lime green", "green", "yellow", "amber"]
+                "faceStructure": ["delicate", "regal", "soft", "sharp", "angular"]
+                "skinColor": ["white", "pale", "olive", "light green", "light pink", "light yellow"]
+                "skinColorSecondary": ["red", "deep red", "blue", "deep blue", "indigo", "purple", "pink", "amber", "golden", "green"]
             })) #23-3
     harpy = raceDetails("harpy",
         ("4.0","4.9","5.8"),
@@ -253,25 +252,26 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
-                "ears":"round"
+                "eyes":"humanoid"
+                "ears":"teardrop"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
                 "hands":"humanoid"
                 "lowerBody":"humanoid"
                 "thighs":"skin"
-                "calfs":"skin"
-                "feet":"humanoid"
+                "calfs":"scaled"
+                "feet":"bird feet"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
+                "hairColor": ["deep red", "red", "ginger", "pink", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
+                "hairColorSecondary": ["white", "silver", "dirty blonde", "light brown", "brown", "dark brown", "black"] #for wings and tail color
+                "eyeColor": ["blue", "sky blue", "red", "deep red", "pink", "grey", "lime green", "green", "brown", "amber", "hazel"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "round", "charubic", "sharp"]
                 "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "skinColorSecondary": ["pale", "beige", "yellow", "tan", "olive", "light brown", "brown", "black"]
             })) #29-9
     oviur = raceDetails("oviur",
         ("3.9","4.5","5.1"),
@@ -281,10 +281,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"starry monocolor"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -295,11 +295,11 @@ init 1 python:
                 "feet":"humanoid"
             },
             {
-                "hairColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "eyeColor": ["blue", "sky blue", "grey", "lime green", "green", "brown", "amber", "hazel"]
-                "beardColor": ["deep red", "ginger", "silver", "blonde", "beige", "dirty blonde", "light brown", "brown", "dark brown", "black"]
-                "faceStructure": ["delicate", "regal", "soft", "chisled", "block headed", "round", "gruff"]
-                "skinColor": ["pale", "beige", "tan", "olive", "light brown", "brown", "dark brown", "black"]
+                "hairColor": ["silver", "grey", "white", "deep indigo", "black"]
+                "eyeColor": ["black", "green", "red", "amber", "purple"]
+                "faceStructure": ["delicate", "regal", "soft", "chisled", "sharp", "round", "angular"]
+                "skinColor": ["black"]
+                "skinColorSecondary": ["red", "deep red", "blue", "deep blue", "indigo", "purple", "pink", "amber", "golden", "green"]
             })) #36-16
     goblin = raceDetails("goblin",
         ("2.9","3.1","3.6"),
@@ -337,10 +337,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -365,10 +365,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -393,10 +393,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
@@ -421,10 +421,10 @@ init 1 python:
             ["canHaveHair", "noseless", "canHaveFreckles"], 
             {
                 "head":"humanoid"
-                "eyes":"monocolor"
+                "eyes":"humanoid"
                 "ears":"round"
                 "mouth":"humanoid"
-                "teeth":"needle-like"
+                "teeth":"omnivorous"
                 "body":"skin"
                 "upperArm":"skin"
                 "lowerArm":"skin"
